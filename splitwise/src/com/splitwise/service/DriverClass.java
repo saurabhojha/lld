@@ -2,6 +2,10 @@ package com.splitwise.service;
 
 import java.util.Scanner;
 
+/**
+* IMO this should be written under tests package
+* Since this is not part of application (If we think of it as a lib)
+*/
 public class DriverClass {
     private static ExpenseManagerService expenseManagerService;
 

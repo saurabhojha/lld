@@ -15,6 +15,7 @@ public class PercentageExpenseValidator implements ExpenseValidator {
 
     @Override
     public boolean isExpenseApplicable(ExpenseType expenseType) {
+        // Same plugin stuff here
         return PercentageExpenseValidator.expenseType.equals(expenseType);
     }
 

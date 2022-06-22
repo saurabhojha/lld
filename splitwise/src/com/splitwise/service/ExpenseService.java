@@ -52,6 +52,7 @@ public class ExpenseService {
     }
 
     public Expense createExpenseFromInput(String []commands) {
+        // A plugin/stratergy pattern will shorten this switch case to 5 lines
         String userId="";
         double totalAmount=0.0;
         List<Split> splits = new ArrayList<>();
