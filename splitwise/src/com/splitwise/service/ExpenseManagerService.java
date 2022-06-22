@@ -24,6 +24,8 @@ public class ExpenseManagerService {
         userMapping = new HashMap<>();
         balanceMapping = new HashMap<>();
         expenses = new ArrayList<>();
+        // Seems like you forgot your old friend
+        // They call it Dependency Injection xD
         userService = new UserService();
         expenseService = new ExpenseService();
     }
@@ -39,6 +41,18 @@ public class ExpenseManagerService {
         users.add(user3);
         users.add(user4);
         for(User user:users) {
+            // In a utils, make a transformer:
+            /*
+             public static Map<String, IndexedObject> transformToMapById(
+                Collection<IndexedObject> idObjects,
+                Function<IndexedObject, String> idGetter
+             ){
+                return idObjects.stream()
+                .collect(Collectors.toMap(idObject -> idGetter.apply(idObject), 
+                            identity()));
+             }
+
+            */
             userMapping.put(user.getId(),user);
             balanceMapping.put(user.getId(),new HashMap<>());
         }
@@ -59,6 +73,7 @@ public class ExpenseManagerService {
         Map<String,Double> userBalance = balanceMapping.get(userId);
         userBalance.entrySet()
                 .stream()
+                // Could user .filter(Predicate<T>) here instead
                 .forEach(userOwingBalance -> {
                     printBalance(userId,userOwingBalance.getKey(),userOwingBalance.getValue());
                 });
@@ -74,6 +89,7 @@ public class ExpenseManagerService {
     public void addExpense(Expense expense) {
         if(expenseService.validateExpense(expense)) {
             expenses.add(expense);
+            // Should be another method `doSplit(...)`
             for(Split split:expense.getSplits()) {
                 updateBalanceMapping(expense.getPaidByUserId(),split.getUserId(),split.getAmount());
                 updateBalanceMapping(split.getUserId(),expense.getPaidByUserId(),-1*split.getAmount());

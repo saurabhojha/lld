@@ -4,6 +4,9 @@ import com.splitwise.models.User;
 
 import java.util.UUID;
 
+/*
+* In OOP, everything shall have an interface !
+*/
 public class UserService {
 
     public User createUser(String name,String email,String phoneNo,String id) {

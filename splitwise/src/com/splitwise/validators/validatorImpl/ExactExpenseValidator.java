@@ -16,6 +16,7 @@ public class ExactExpenseValidator implements ExpenseValidator {
 
     @Override
     public boolean isExpenseApplicable(ExpenseType expenseType) {
+        // Same for this, could be one plugin in PluginRegistry<ExpenseValidator>
         return ExactExpenseValidator.expenseType.equals(expenseType);
     }
 
@@ -26,6 +27,8 @@ public class ExactExpenseValidator implements ExpenseValidator {
         }
         List<Split> splits = expense.getSplits();
         double totalAmountPerUser = 0;
+        // Use streams, use mutable reduction. All these things count
+        // as plus points in interview I think :^) 
         for(Split eachSplit: splits) {
             totalAmountPerUser+=eachSplit.getAmount();
         }

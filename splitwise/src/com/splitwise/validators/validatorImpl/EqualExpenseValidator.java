@@ -15,6 +15,7 @@ public class EqualExpenseValidator implements ExpenseValidator {
 
     @Override
     public boolean isExpenseApplicable(ExpenseType expenseType) {
+        // This can be achieved more nicely with a startergy/plugin registry pattern
         return EqualExpenseValidator.expenseType.equals(expenseType);
     }
 
